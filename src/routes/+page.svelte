@@ -1,3 +1,21 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import { useShape } from '$lib/shape.svelte';
+
+	const shape = useShape({
+		url: `http://localhost:3000/v1/shape`,
+		params: {
+			table: 'foo'
+		}
+	});
+</script>
+
+{#if shape.isLoading}
+	<p>Loading...</p>
+{:else}
+	{#each shape.data as item, i}
+		<div style="display: flex; gap: 10px">
+			<p>{i}</p>
+			<p>{item.name}</p>
+		</div>
+	{/each}
+{/if}

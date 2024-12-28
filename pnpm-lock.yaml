@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@electric-sql/client':
+    specifier: 1.0.0-beta.2
+    version: 1.0.0-beta.2
+
 devDependencies:
   '@eslint/compat':
     specifier: ^1.2.3
@@ -69,6 +74,12 @@ packages:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
     dev: true
+
+  /@electric-sql/client@1.0.0-beta.2:
+    resolution: {integrity: sha512-JbDOI9KhH+JuVOp1j4WbgkUtHeH7DUiPTWCxD1BLepbzA+xU1DU0BCQwh0xxBQXrIgddddzot5bumHqSj1yMhA==}
+    optionalDependencies:
+      '@rollup/rollup-darwin-arm64': 4.29.1
+    dev: false
 
   /@esbuild/aix-ppc64@0.21.5:
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -460,7 +471,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@rollup/rollup-darwin-x64@4.29.1:
