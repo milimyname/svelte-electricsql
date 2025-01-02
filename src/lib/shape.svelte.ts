@@ -85,7 +85,7 @@ export interface UseShapeResult<T extends Row<unknown> = Row> {
 	isError: boolean;
 }
 
-interface UseShapeOptions<SourceData extends Row<unknown>, Selection>
+export interface UseShapeOptions<SourceData extends Row<unknown>, Selection>
 	extends ShapeStreamOptions<GetExtensions<SourceData>> {
 	selector?: (value: UseShapeResult<SourceData>) => Selection;
 }
@@ -102,16 +102,16 @@ export function useShape<
 	const shapeStream = getShapeStream<SourceData>(options);
 	const shape = getShape<SourceData>(shapeStream);
 	const latestShapeData = $state(parseShapeData(shape));
+	const selected = $state(selector(latestShapeData));
 
 	$effect(() => {
 		const unsubscribe = shape.subscribe(() => {
 			Object.assign(latestShapeData, parseShapeData(shape));
+			Object.assign(selected as object, selector(latestShapeData));
 		});
 
 		return () => unsubscribe();
 	});
-
-	const selected = $derived(selector(latestShapeData));
 
 	return selected;
 }
