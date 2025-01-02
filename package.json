@@ -2,6 +2,10 @@
 	"name": "svelte-electricsql",
 	"version": "0.0.3",
 	"license": "MIT",
+	"packageManager": "pnpm@9.4.0",
+	"engines": {
+		"pnpm": "^9.0.0"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
