@@ -85,7 +85,7 @@ export interface UseShapeResult<T extends Row<unknown> = Row> {
 	isError: boolean;
 }
 
-interface UseShapeOptions<SourceData extends Row<unknown>, Selection>
+export interface UseShapeOptions<SourceData extends Row<unknown>, Selection>
 	extends ShapeStreamOptions<GetExtensions<SourceData>> {
 	selector?: (value: UseShapeResult<SourceData>) => Selection;
 }
