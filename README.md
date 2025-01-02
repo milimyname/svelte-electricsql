@@ -14,6 +14,9 @@ This packages exposes a `useShape` hook for pulling shape data into your Svelte 
 
 ## How to use
 
+> [!WARNING]  
+> Do not destructure the shape object returned by `useShape`. The shape object is reactive and will not update if destructured.
+
 ```svelte
 <script>
 	import { useShape } from 'svelte-electricsql';
