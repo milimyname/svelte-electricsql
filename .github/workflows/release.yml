@@ -5,8 +5,9 @@ on:
       - main
 
 jobs:
-  version:
-    timeout-minutes: 15
+  release:
+    name: Build && Publish Release
+    if: github.repository == 'milimyname/svelte-electricsql'
     runs-on: ubuntu-latest
     permissions:
       contents: write
