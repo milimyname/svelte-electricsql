@@ -20,8 +20,8 @@
 		"test": "npm run test:unit -- --run",
 		"db:start": "docker compose -f .support/docker-compose.yml up -d",
 		"db:reset": "docker compose -f .support/docker-compose.yml down && pnpm db:start",
-		"changeset:version": "changeset version && pnpm -r generate:version && git add --all",
-		"changeset:publish": "changeset publish",
+		"changeset:version": "changeset version",
+		"changeset:publish": "pnpm build && changeset publish",
 		"release": "pnpm build && changeset publish"
 	},
 	"files": [
