@@ -1,5 +1,11 @@
 # svelte-electricsql
 
+## 0.1.0
+
+### Minor Changes
+
+- c478ed9: remove unused code
+
 ## 0.0.4
 
 ### Patch Changes
