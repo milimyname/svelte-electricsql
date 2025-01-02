@@ -14,7 +14,7 @@
 {:else}
 	{#each shape.data as item, i}
 		<div style="display: flex; gap: 10px">
-			<p>{i}</p>
+			<p>{i}</p>xqxxq
 			<p>{item.name}</p>
 		</div>
 	{/each}
