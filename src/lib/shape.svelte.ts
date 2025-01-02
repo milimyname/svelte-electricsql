@@ -99,9 +99,8 @@ export function useShape<
 	) => Selection,
 	...options
 }: UseShapeOptions<SourceData, Selection>): Selection {
-	// Create the shape and stream as regular (non-reactive) variables
-	const shapeStream = $state(getShapeStream<SourceData>(options));
-	const shape = $state(getShape<SourceData>(shapeStream));
+	const shapeStream = getShapeStream<SourceData>(options);
+	const shape = getShape<SourceData>(shapeStream);
 	const latestShapeData = $state(parseShapeData(shape));
 
 	$effect(() => {
@@ -114,110 +113,11 @@ export function useShape<
 
 	const selected = $derived(selector(latestShapeData));
 
-	// Return an object with getters for all properties
 	return selected;
 }
 
 // Helper function to parse shape data
 function parseShapeData<T extends Row<unknown>>(shape: Shape<T>): UseShapeResult<T> {
-	return {
-		data: shape.currentRows,
-		isLoading: shape.isLoading(),
-		lastSyncedAt: shape.lastSyncedAt(),
-		isError: shape.error !== false,
-		shape,
-		stream: shape.stream as ShapeStream<T>,
-		error: shape.error
-	};
-}
-
-export class UseShapeClass<
-	SourceData extends Row<unknown> = Row,
-	Selection = UseShapeResult<SourceData>
-> {
-	stream: ShapeStream<SourceData>;
-	shape: Shape<SourceData>;
-	data = $state<SourceData[]>([]);
-	isLoading = $state<boolean>(true);
-	lastSyncedAt = $state<number | undefined>(undefined);
-	error = $state<Shape<SourceData>['error']>(false);
-	isError = $state<boolean>(false);
-
-	// Selector with a default implementation
-	private selector: (arg: UseShapeResult<SourceData>) => Selection;
-
-	constructor(
-		options: UseShapeOptions<SourceData, Selection>,
-		parseShapeData: (shape: Shape<SourceData>) => UseShapeResult<SourceData> = defaultParseShapeData
-	) {
-		// Default selector that returns the entire state
-		this.selector = ((arg: UseShapeResult<SourceData>) => arg) as (
-			arg: UseShapeResult<SourceData>
-		) => Selection;
-
-		// Create shape stream and shape
-		this.stream = getShapeStream<SourceData>(options);
-		this.shape = getShape<SourceData>(this.stream);
-
-		// Initial data parsing
-		this.initializeData(parseShapeData);
-
-		// Subscribe to shape changes
-		this.setupSubscription(parseShapeData);
-	}
-
-	private initializeData(parseShapeData: (shape: Shape<SourceData>) => UseShapeResult<SourceData>) {
-		const initialData = parseShapeData(this.shape);
-		this.updateState(initialData);
-	}
-
-	private setupSubscription(
-		parseShapeData: (shape: Shape<SourceData>) => UseShapeResult<SourceData>
-	) {
-		$effect(() => {
-			const unsubscribe = this.shape.subscribe(() => {
-				const newData = parseShapeData(this.shape);
-				this.updateState(newData);
-			});
-
-			return () => unsubscribe();
-		});
-	}
-
-	private updateState(data: UseShapeResult<SourceData>) {
-		this.data = data.data ?? this.data;
-		this.isLoading = data.isLoading ?? this.isLoading;
-		this.lastSyncedAt = data.lastSyncedAt ?? this.lastSyncedAt;
-		this.error = data.error ?? this.error;
-		this.isError = data.isError ?? this.isError;
-	}
-
-	// Getter for the selected result
-	get result(): Selection {
-		return this.selector(this.getCurrentState());
-	}
-
-	// Get current state with type safety
-	private getCurrentState(): UseShapeResult<SourceData> {
-		return {
-			data: this.data,
-			isLoading: this.isLoading,
-			lastSyncedAt: this.lastSyncedAt,
-			error: this.error,
-			isError: this.isError,
-			shape: this.shape,
-			stream: this.stream
-		};
-	}
-
-	// Allow custom selector
-	withSelector(selector: (arg: UseShapeResult<SourceData>) => Selection) {
-		this.selector = selector;
-		return this;
-	}
-}
-
-function defaultParseShapeData<T extends Row<unknown>>(shape: Shape<T>): UseShapeResult<T> {
 	return {
 		data: shape.currentRows,
 		isLoading: shape.isLoading(),
