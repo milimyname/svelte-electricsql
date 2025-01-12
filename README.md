@@ -39,3 +39,7 @@ This packages exposes a `useShape` hook for pulling shape data into your Svelte 
 	</ul>
 {/if}
 ```
+
+## Links
+
+[Npm package](https://www.npmjs.com/package/svelte-electricsql)
