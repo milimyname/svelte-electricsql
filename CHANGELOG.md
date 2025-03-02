@@ -1,5 +1,12 @@
 # svelte-electricsql
 
+## 0.1.2
+
+### Patch Changes
+
+- c58709d: Test useShape
+- f90fcd8: Test useShape
+
 ## 0.1.1
 
 ### Patch Changes
