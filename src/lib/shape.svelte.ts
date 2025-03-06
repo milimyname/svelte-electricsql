@@ -1,3 +1,4 @@
+export * from '@electric-sql/client';
 import {
 	Shape,
 	ShapeStream,
