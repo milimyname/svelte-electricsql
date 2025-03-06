@@ -1,5 +1,11 @@
 # svelte-electricsql
 
+## 0.1.3
+
+### Patch Changes
+
+- 9cab3d8: Export everything from electricsql
+
 ## 0.1.2
 
 ### Patch Changes
