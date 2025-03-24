@@ -1,5 +1,11 @@
 # svelte-electricsql
 
+## 0.1.4
+
+### Patch Changes
+
+- 8315873: update deps
+
 ## 0.1.3
 
 ### Patch Changes
