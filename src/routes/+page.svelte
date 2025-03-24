@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { useShape } from '$lib/shape.svelte';
+	import { useShape, type PostgresParams } from '$lib/shape.svelte';
 
 	const shape = useShape({
 		url: `http://localhost:3000/v1/shape`,
