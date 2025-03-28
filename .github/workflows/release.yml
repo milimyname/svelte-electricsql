@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "docs/**"
+      - ".github/workflows/deploy-docs.yml"
 
 jobs:
   release:
@@ -18,19 +21,20 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
+
       - uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18.x
           cache: pnpm
 
-      - name: Install
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build Package
         run: pnpm build
 
       - name: Create Release Pull Request or Publish to npm
