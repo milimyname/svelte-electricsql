@@ -2,6 +2,10 @@
   "name": "docs",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@9.4.0",
+  "engines": {
+    "pnpm": "^9.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

@@ -1,6 +1,10 @@
 {
-  "name": "svelte-electricsql",
+  "name": "svelte-electricsql-root",
   "private": true,
+  "packageManager": "pnpm@9.4.0",
+  "engines": {
+    "pnpm": "^9.0.0"
+  },
   "scripts": {
     "dev": "pnpm --filter=svelte-electricsql dev",
     "docs:dev": "pnpm --filter=docs dev",
