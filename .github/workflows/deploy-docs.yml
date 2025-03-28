@@ -25,9 +25,6 @@ jobs:
           node-version: 18 # Use the same Node version as your other workflow
           package-manager: pnpm@9.4.0 # Specify pnpm version
 
-      - name: Configure custom domain
-        run: echo "electricsql.mili-my.name" > docs/dist/CNAME
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
