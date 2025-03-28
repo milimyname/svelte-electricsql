@@ -4,7 +4,7 @@ import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://electricsql.mily-my.name",
+  site: "https://electricsql.mili-my.name",
   integrations: [
     starlight({
       title: "Svelte ElectricSQL",

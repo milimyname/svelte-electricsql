@@ -26,7 +26,7 @@ jobs:
           package-manager: pnpm@9.4.0 # Specify pnpm version
 
       - name: Configure custom domain
-        run: echo "electricsql.mily-my.name" > docs/dist/CNAME
+        run: echo "electricsql.mili-my.name" > docs/dist/CNAME
 
   deploy:
     needs: build
